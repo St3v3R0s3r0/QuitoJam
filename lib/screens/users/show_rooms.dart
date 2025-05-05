@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quitojam_1/widgets/custom_drawer.dart';
-import 'package:quitojam_1/styles/colors/colors.dart'; // Importa tu clase de colores
+import 'package:quitojam_1/styles/colors/colors.dart';
+import 'package:quitojam_1/screens/login.dart';
+import 'package:quitojam_1/screens/register.dart';
 
 class ShowRoomsScreen extends StatelessWidget {
   const ShowRoomsScreen({super.key});
@@ -39,56 +41,88 @@ class ShowRoomsScreen extends StatelessWidget {
         iconTheme: const IconThemeData(color: AppColors.brightLights),
         elevation: 0,
       ),
-      body: ListView.builder(
+      body: ListView(
         padding: const EdgeInsets.all(16),
-        itemCount: salas.length,
-        itemBuilder: (context, index) {
-          final sala = salas[index];
-          return Card(
-            color: AppColors.steel,
-            elevation: 4,
-            margin: const EdgeInsets.only(bottom: 16),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    sala['nombre']!,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.brightLights,
+        children: [
+          ...salas.map(
+            (sala) => Card(
+              color: AppColors.steel,
+              elevation: 4,
+              margin: const EdgeInsets.only(bottom: 16),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      sala['nombre']!,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.brightLights,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.location_on,
-                        color: Colors.white70,
-                        size: 16,
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        sala['ubicacion']!,
-                        style: const TextStyle(color: Colors.white70),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    sala['descripcion']!,
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                ],
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.location_on,
+                          color: Colors.white70,
+                          size: 16,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          sala['ubicacion']!,
+                          style: const TextStyle(color: Colors.white70),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      sala['descripcion']!,
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
               ),
             ),
-          );
-        },
+          ),
+          const SizedBox(height: 24),
+          Center(
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.brightLights,
+                foregroundColor: AppColors.skyline,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const LoginScreen()),
+                );
+              },
+              child: const Text('Ir a Login'),
+            ),
+          ),
+          const SizedBox(height: 12),
+          Center(
+            child: OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                foregroundColor: AppColors.brightLights,
+                side: const BorderSide(color: AppColors.brightLights),
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => RegisterScreen()),
+                );
+              },
+              child: const Text('Ir a Registro'),
+            ),
+          ),
+        ],
       ),
     );
   }
