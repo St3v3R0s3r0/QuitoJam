@@ -1,5 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:quitojam_1/screens/users/welcome.dart';
+
+import 'package:quitojam_1/screens/login.dart';
+import 'package:quitojam_1/screens/register.dart';
+import 'package:quitojam_1/screens/users/show_rooms.dart';
+import 'package:quitojam_1/screens/users/perfil.dart';
+import 'package:quitojam_1/screens/users/mis_reservas.dart';
+
+import 'package:quitojam_1/screens/admins/inicio_admin.dart';
+import 'package:quitojam_1/screens/admins/mis_salas.dart';
+import 'package:quitojam_1/screens/admins/agregar_editarSalas.dart';
+import 'package:quitojam_1/screens/admins/reservas_recibidas.dart';
+import 'package:quitojam_1/screens/admins/gestionar_horarios.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,25 +24,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Quito Jam',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const WelcomeScreen(),
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      routes: {
+        // Usuario invitado/cliente
+        '/': (context) => const ShowRoomsScreen(),
+        '/login': (context) => const LoginScreen(),
+        '/register': (context) => RegisterScreen(),
+        '/perfil': (context) => const PerfilScreen(),
+        '/mis-reservas': (context) => const MisReservasScreen(),
+
+        // Admin
+        '/inicio-admin': (context) => const InicioAdminScreen(),
+        '/mis-salas': (context) => const MisSalasScreen(),
+        '/editar-sala': (context) => AgregarEditarSalasScreen(),
+        '/gestionar-horarios': (context) => const GestionarHorariosScreen(),
+        '/reservas-recibidas': (context) => const ReservasRecibidasScreen(),
+      },
     );
   }
 }

@@ -7,7 +7,7 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.skyline,
+      backgroundColor: AppColors.fondoGeneral,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -17,33 +17,29 @@ class RegisterScreen extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 24),
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.05),
+                  color: AppColors.headerFooter,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    // Aquí va el logo arriba
                     Center(
                       child: Column(
                         children: [
-                          Image.asset(
-                            'assets/logo.png',
-                            width: 400,
-                            height: 400,
-                          ),
+                          Image.asset('assets/logo.png',
+                              width: 300, height: 300),
                           const SizedBox(height: 15),
                         ],
                       ),
                     ),
                     const SizedBox(height: 30),
-
                     _buildInput('Nombre', Icons.person),
                     _buildInput('Cédula', Icons.credit_card),
                     _buildInput('Correo', Icons.email),
                     _buildInput('Contraseña', Icons.lock, obscure: true),
+                    _buildInput('Confirmar Contraseña', Icons.lock_outline,
+                        obscure: true),
                     _buildInput('Teléfono', Icons.phone),
-
                     const SizedBox(height: 16),
                     _buildPhotoUploadButton(),
                     const SizedBox(height: 24),
@@ -63,11 +59,11 @@ class RegisterScreen extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 16),
       child: TextField(
         obscureText: obscure,
-        style: const TextStyle(color: AppColors.brightLights),
+        style: const TextStyle(color: AppColors.classic),
         decoration: InputDecoration(
           prefixIcon: Icon(icon, color: AppColors.brightLights),
           hintText: label,
-          hintStyle: const TextStyle(color: AppColors.brightLights),
+          hintStyle: const TextStyle(color: AppColors.classic),
           enabledBorder: const UnderlineInputBorder(
             borderSide: BorderSide(color: AppColors.brightLights),
           ),
@@ -103,7 +99,7 @@ class RegisterScreen extends StatelessWidget {
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.brightLights,
-        foregroundColor: AppColors.skyline,
+        foregroundColor: AppColors.fondoGeneral,
         padding: const EdgeInsets.symmetric(vertical: 14),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       ),
